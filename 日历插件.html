@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="ui/jquery-1.8.3.js"></script>
+    <style>
+      .d1 {
+          /*border: 2px solid red;*/
+      }
+    </style>
+</head>
+<body>
+<d1 class="d1"></d1>
+<script>
+
+    //这个方法可以获取浏览器的信息 获取到的是一个对象  通过for in 循环可以遍历
+    $(function () {
+        var list=$.support;
+        var i=0;
+        var str="";
+        for (key in list) {
+            i++;
+            str+=i+"."+key+"="+list[key] +"<br>";
+        }
+        $(".d1").html(str);
+    });
+</script>
+</body>
+</html>

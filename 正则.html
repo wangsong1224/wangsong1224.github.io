@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body,html {
+            height: 100%;
+        }
+
+    </style>
+</head>
+<body>
+
+</body>
+<script>
+    var reg=/\d+$/gm
+    var str="28284949" +
+            "8883" +
+            "8383838" +
+            "9302";
+    var result= reg.exec(str);
+    console.log(result);
+</script>
+
+<script>
+
+    function getColor() {
+        var str="#";
+        for (var i=0;i<6;i++) {
+            var s=Math.floor(Math.random()*16).toString(16).toLocaleUpperCase();
+            str+=s;
+        }
+        return str;
+    }
+
+    document.onkeydown=function () {
+        document.body.style.backgroundColor=getColor();
+    }
+     document.onkeydown=function (e) {
+         console.log(e.keyCode);
+         switch (e.keyCode) {
+             case 65: document.body.style.backgroundColor="skyblue";
+                 break;
+             case 66: document.body.style.backgroundColor="orange";
+                 break;
+             case 67: document.body.style.backgroundColor="hotpink";
+                 break;
+             case 68: document.body.style.backgroundColor="black";
+                 break;
+             case 69: document.body.style.backgroundColor="gray";
+                 break;
+             case 70: document.body.style.backgroundColor="purple";
+                 break;
+             case 71: document.body.style.backgroundColor="red";
+                 break;
+             case 72: document.body.style.backgroundColor="blue";
+                 break;
+             case 73: document.body.style.backgroundColor="brown";
+                 break;
+             case 74: document.body.style.backgroundColor="aqua";
+                 break;
+             case 75: document.body.style.backgroundColor="gold";
+                 break;
+         }
+    }
+</script>
+</html>

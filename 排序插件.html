@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="ui/jquery-1.8.3.js"></script>
+    <script src="ui/jquery.ui.core.js"></script>
+    <script src="ui/jquery.ui.widget.js"></script>
+    <script src="ui/jquery.ui.mouse.js"></script>
+    <script src="ui/jquery.ui.sortable.js"></script>
+    <script src="ui/jquery.ui.accordion.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        ul {
+            height: 600px;
+            width: 250px;
+            border: 1px solid gray;
+            margin: 50px auto;
+        }
+        li {
+            height: 30px;
+            width: 200px;
+            text-align: center;
+            line-height:30px;
+            background-color: #ccc;
+            margin: 5px;
+        }
+        #uu1 {
+            height: 400px;
+            width: 250px;
+            border: 1px solid gray;
+            margin: 50px 10px;
+        }
+        #uu1 h4 {
+            height: 30px;
+            background-color: gray;
+            line-height:30px;
+        }
+        #uu1 p {
+            height: 100px;
+            background-color: #f0f0f0;
+            line-height:50px;
+        }
+    </style>
+</head>
+<body>
+<ul id="uu">
+    <li>选项1</li>
+    <p>选项1内容</p>
+    <li>选项2</li>
+    <p>选项2内容</p>
+    <li>选项3</li>
+    <p>选项3内容</p>
+    <li>选项4</li>
+    <p>选项4内容</p>
+    <li>选项5</li>
+    <p>选项5内容</p>
+</ul>
+
+<ul id="uu1">
+    <h4>选项1</h4>
+    <p>选项1内容</p>
+    <h4>选项2</h4>
+    <p>选项2内容</p>
+    <h4>选项3</h4>
+    <p>选项3内容</p>
+    <h4>选项4</h4>
+    <p>选项4内容</p>
+    <h4>选项5</h4>
+    <p>选项5内容</p>
+</ul>
+<script>
+//    $("#uu").sortable("li");
+    $("#uu").sortable({
+        delay:1,
+        opacity:.5
+    });
+
+
+//    手风琴效果 这个方法局限性很大  必须是标题标签h
+//    下面隐藏的内容必须是兄弟元素  不能标题连着p一起被拖动
+    $("#uu1").accordion({
+        animated:"slide",
+        active:2
+    });
+    $("#uu1").sortable({
+        delay:1,
+        opacity:.5
+    });
+
+</script>
+</body>
+</html>

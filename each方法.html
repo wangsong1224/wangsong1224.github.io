@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <style>
+        body {
+            height: 3000px;
+        }
+        *{
+            list-style: none;
+        }
+        #dd {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        .baidu {
+            width: 500px;
+            height: 500px;
+            margin:100px auto;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>呵呵呵呵呵</li>
+    <li>呵呵呵呵呵</li>
+    <li>呵呵呵呵呵</li>
+    <li>呵呵呵呵呵</li>
+    <li>呵呵呵呵呵</li>
+    <li>呵呵呵呵呵</li>
+    <li>呵呵呵呵呵</li>
+    <li>呵呵呵呵呵</li>
+    <li>呵呵呵呵呵</li>
+    <li>呵呵呵呵呵</li>
+    <li>呵呵呵呵呵</li>
+    <li>呵呵呵呵呵</li>
+    <li>呵呵呵呵呵</li>
+    <li>呵呵呵呵呵</li>
+    <li>呵呵呵呵呵</li>
+    <li>呵呵呵呵呵</li>
+    <li>呵呵呵呵呵</li>
+    <li>呵呵呵呵呵</li>
+    <li>呵呵呵呵呵</li>
+</ul>
+<input type="button" id="btn" value="一次性的">
+<br><br>
+<input type="button" value="显示/隐藏" id="btn1">
+<div id="dd"></div>
+<script>
+
+    //给li标签的第二到第五个设置不同的字体颜色 并隔行变色
+    //新方法
+    $("ul>li:not(:first)").each(function (i) {
+        $(this).css({
+            "color":["red","blue","green","orange"][i],
+            "fontSize":["15px","16px","17px","18px"][i],
+            //能除尽就应用第一个颜色 不能就应用第二个 这里不包含第一个li
+            "backgroundColor":["#ccc","#fff"][i%2]
+        });
+    });
+
+
+
+
+    $("#btn").one("click", function () {
+        console.log(111);
+    });
+
+    $("#btn1").click(function () {
+//        var cont=0;
+//        var bar=cont>1;
+        $("#dd").toggle(500);
+    });
+
+
+    $("#dd").hover(function () {
+        $(this).fadeTo(500, .1, function () {
+            console.log("指定到某个值的透明度");
+        });
+    }, function () {
+        $(this).fadeTo(500, 1, function () {
+            console.log("指定到某个值的透明度");
+        });
+    });
+
+
+</script>
+
+<script>
+    var ary=[2,3,4,5,6,7,8,4,3,45,3]
+
+   var result = $.inArray(3,ary);
+
+console.log(ary.toString());
+console.log(result);
+</script>
+
+<script>
+    //按住Ctrl  Alt 再按其他的键会出现效果 true
+    $("body").keypress(function (e) {
+        console.log(e.ctrlKey,e.altKey);
+    });
+
+</script>
+
+
+
+<div class="baidu">
+    <input type="text" placeholder="请输入要搜索的内容" id="search">
+
+</div>
+<script>
+    var search=[];
+    $("#search").keyup(function () {
+        var item=$(this).val();
+        if (item!=" "&&item!=""&&search.indexOf(item)==-1) {
+            search.push($(this).val());
+            console.log(search);
+            console.log(search.indexOf(item));
+        }
+    });
+</script>
+</body>
+</html>

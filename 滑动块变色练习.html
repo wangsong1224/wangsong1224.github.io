@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="ui/jquery-1.8.3.js"></script>
+    <script src="ui/jquery.ui.core.js"></script>
+    <script src="ui/jquery.ui.widget.js"></script>
+    <script src="ui/jquery.ui.mouse.js"></script>
+    <script src="ui/jquery.ui.draggable.js"></script>
+    <style>
+        .container {
+            width: 600px;
+            height: 300px;
+            border: 1px solid gray;
+            position: relative;
+        }
+        
+        .l {
+            width: 500px;
+            float: left;
+        }
+        
+        .d1,
+        .d2,
+        .d3 {
+            margin-left: 20px;
+            width: 304px;
+            height: 30px;
+            border: 1px solid gray;
+            border-left: none;
+            margin-top: 50px;
+            position: relative;
+        }
+        
+        .d1 div {
+            text-align: center;
+            line-height: 50px;
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: -10px;
+            left: 0;
+            background-color: red;
+            z-index: 10;
+        }
+        
+        .d2 div {
+            text-align: center;
+            line-height: 50px;
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: -10px;
+            left: 0;
+            background-color: green;
+            z-index: 10;
+        }
+        
+        .d3 div {
+            text-align: center;
+            line-height: 50px;
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: -10px;
+            left: 0;
+            background-color: blue;
+            z-index: 10;
+        }
+        
+        .r {
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+            margin-top: 50px;
+            position: absolute;
+            top: 0;
+            right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="l">
+            <div class="d1">
+                <div class="d11"></div>
+            </div>
+            <div class="d2">
+                <div class="d22"></div>
+            </div>
+            <div class="d3">
+                <div class="d33"></div>
+            </div>
+        </div>
+        <div class="r">
+        </div>
+    </div>
+</body>
+<script>
+    // var b = 0;
+    var $span = $("<span></span>");
+    var $d11 = $(".d11");
+    var $d22 = $(".d22");
+    var $d33 = $(".d33");
+    var $changeBox = $(".r");
+
+
+    //添加属性 在每次移动的时候 获取三个标签的left的值 赋值给.r 
+    function ChangeColor(r, g, b) {
+        this.init(r, g, b);
+    }
+    ChangeColor.prototype = {
+        constructor: ChangeColor,
+        init: function(red, green, blue) {
+            //循环遍历 每一个参数
+            var that = this.init(r, g, b);
+            console.log(that);
+            for (var i = 0; i < 3; i++) {
+                arguments[i].draggable({
+                    axis: "x",
+                    containment: "parent",
+                    drag: function(e, ui) {
+                        var self = this;
+                        console.log(this);
+                        var b = $(self).offset().left - 10;
+                        $(self).attr("rgb", b);
+                        $(self).parent().append($span);
+                        var color = $(self).css("backgroundColor");
+                        $span.css({
+                            display: "block",
+                            position: "absolute",
+                            width: b + "px",
+                            height: "30px",
+                            backgroundColor: color
+                        });
+                        $(self).text("B:" + (b - 19));
+                        $changeBox.css({
+                            "backgroundColor": "rgb(" + that.arguments[0].attr("rgb") + "," + that.arguments[1].attr("rgb") + "," + that.arguments[2].attr("rgb") + ")"
+                        });
+                    }
+                });
+            }
+        },
+    }
+
+    var moveColor = new ChangeColor($d11, $d22, $d33);
+
+
+    // var r = 0,
+    //     g = 0,
+    //     b = 0;
+    // var $spRed = $("<span></span>");
+    // var $spGreen = $("<span></span>");
+    // var $spBlue = $("<span></span>");
+    // $(".d11").draggable({
+    //     axis: "x",
+    //     containment: "parent",
+    //     drag: function(e, ui) {
+    //         r = $(this).offset().left - 10;
+    //         $(this).text("R:" + (r - 19));
+    //         $(".d1").append($spRed);
+    //         var color = $(this).css("backgroundColor");
+    //         $(".d11").attr("color", r);
+    //         console.log($(this).r);
+    //         console.log($(this));
+    //         $spRed.css({
+    //             display: "block",
+    //             position: "absolute",
+    //             width: r + "px",
+    //             height: "30px",
+    //             backgroundColor: color
+    //         });
+    //         $(".r").css({
+    //             "backgroundColor": "rgb(" + $(".d11").attr("color") + "," + g + "," + b + ")"
+    //         });
+    //     }
+    // });
+
+    // $(".d22").draggable({
+    //     axis: "x",
+    //     containment: "parent",
+    //     drag: function(e, ui) {
+    //         g = $(this).offset().left - 10;
+    //         $(".d2").append($spGreen);
+    //         $spGreen.css({
+    //             display: "block",
+    //             position: "absolute",
+    //             width: g + "px",
+    //             height: "30px",
+    //             backgroundColor: "green"
+    //         });
+    //         $(this).text("G:" + (g - 19));
+    //         $(".r").css({
+    //             "backgroundColor": "rgb(" + r + "," + g + "," + b + ")"
+    //         });
+    //     }
+    // });
+
+    // $(".d33").draggable({
+    //     axis: "x",
+    //     containment: "parent",
+    //     drag: function(e, ui) {
+    //         b = $(this).offset().left - 10;
+    //         $(".d3").append($spBlue);
+    //         $spBlue.css({
+    //             display: "block",
+    //             position: "absolute",
+    //             width: b + "px",
+    //             height: "30px",
+    //             backgroundColor: "blue"
+    //         });
+    //         $(this).text("B:" + (b - 19));
+    //         $(".r").css({
+    //             "backgroundColor": "rgb(" + r + "," + g + "," + b + ")"
+    //         });
+    //     }
+    // });
+</script>
+
+</html>
